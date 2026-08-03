@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+:focus-visible {
+  outline: 2px solid #E8A33D;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---- Signature element: the boarding-pass / ticket-stub card ---- */
+.ticket {
+  @apply relative flex bg-white rounded-stub shadow-ticket overflow-hidden;
+}
+
+.ticket-main {
+  @apply flex-1 p-5;
+}
+
+.ticket-stub {
+  @apply w-full sm:w-40 shrink-0 bg-navy-900 text-white p-4 flex sm:flex-col items-center justify-between sm:justify-center gap-2 relative;
+}
+
+/* perforation: dashed line + notch circles, like a torn ticket edge */
+.ticket-perf {
+  @apply hidden sm:block absolute left-0 top-0 bottom-0 w-px bg-perf-dash;
+}
+
+.ticket-notch-top,
+.ticket-notch-bottom {
+  @apply hidden sm:block absolute left-0 w-4 h-4 rounded-full bg-paper -translate-x-1/2;
+}
+.ticket-notch-top { top: -8px; }
+.ticket-notch-bottom { bottom: -8px; }
+
+.pnr-code {
+  @apply font-mono tracking-widest text-sm;
+}
+
+.eyebrow {
+  @apply text-xs font-mono uppercase tracking-[0.2em] text-slate-450;
+}
+
+.badge {
+  @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-mono uppercase tracking-wide;
+}
+.badge-pending { @apply bg-amber-300/40 text-navy-900; }
+.badge-confirmed { @apply bg-ok/15 text-ok; }
+.badge-cancelled { @apply bg-danger/15 text-danger; }
+.badge-completed { @apply bg-navy-700/15 text-navy-700; }
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-primary { @apply bg-navy-900 text-white hover:bg-navy-800; }
+.btn-amber { @apply bg-amber-500 text-navy-950 hover:bg-amber-400 font-semibold; }
+.btn-outline { @apply border border-navy-900/20 text-navy-900 hover:bg-navy-900/5; }
+.btn-danger { @apply bg-danger text-white hover:opacity-90; }
+.btn-ghost { @apply text-navy-900 hover:bg-navy-900/5; }
+
+.input {
+  @apply w-full rounded-lg border border-slate-450/30 bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-slate-450/70 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition;
+}
+
+.label {
+  @apply block text-xs font-medium uppercase tracking-wide text-slate-450 mb-1.5;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-ticket p-6;
+}
+
+.table-wrap {
+  @apply overflow-x-auto rounded-xl border border-slate-450/15;
+}
+table.data {
+  @apply w-full text-sm;
+}
+table.data thead {
+  @apply bg-navy-900 text-white;
+}
+table.data th {
+  @apply text-left font-medium px-4 py-3 text-xs uppercase tracking-wide;
+}
+table.data td {
+  @apply px-4 py-3 border-t border-slate-450/10;
+}
+table.data tbody tr:hover {
+  @apply bg-amber-300/10;
+}
